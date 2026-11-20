@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Conectando · Clip Watcher</title>
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="icon" href="icone.png">
+</head>
+<body>
+<main>
+  <header><img src="icone.png" alt=""><span class="nome">Clip Watcher</span></header>
+  <h1>Voltando para o Clip Watcher...</h1>
+  <p id="msg">Se nada acontecer em alguns segundos, confira se o Clip Watcher está aberto neste computador e
+    <a id="link" href="#">clique aqui</a>.</p>
+</main>
+<script>
+  // A rede devolve o login para esta página (ela exige um endereço https). Aqui o código
+  // segue para o Clip Watcher, que está esperando no próprio computador (localhost).
+  // Nada é guardado nem enviado para outro lugar.
+  var destino = "http://localhost:8723/retorno/" + location.search + location.hash;
+  document.getElementById("link").href = destino;
+  if (location.search.indexOf("code=") >= 0 || location.search.indexOf("error") >= 0) {
+    location.replace(destino);
+  } else {
+    document.getElementById("msg").textContent = "Esta página só é usada para conectar uma conta ao Clip Watcher.";
+  }
+</script>
+</body>
+</html>
